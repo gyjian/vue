@@ -3,3 +3,4 @@
 
 学习 Vue ，他的学习曲线平稳很多；不管选择什么框架，除了对基础的知识有一定的了解掌握，还应该对 ES6 有一定的了解；
 
+![image](https://github.com/872822645/danxuankuangDemo/blob/master/1.jpg)
