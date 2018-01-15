@@ -3,11 +3,11 @@
 ![image](https://github.com/gyjian/vue/blob/master/img/API.png)</br>
 这张图概况了 Vue 通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件</br>
 ### vue相关特性
-key<br>
+1、key<br>
 Vue 为了尽可能高效地渲染元素，通常会重复利用已有元素而不是从头开始渲染。这么做的目的是 Vue 变得非常快。如果我们不想复用已有的元素，即切换到注册的时候，清空账号和密码，那key就派上用场了，在标签内加入 key="username-input" 和 key="username-password" ,就清除复用了，此时 Vue 元素就是重头开始渲染。</br>
 [查看demo](https://github.com/gyjian/vue/blob/master/register.html)</br>
 
-is</br>
+2、is</br>
 在 vue 中，当使用 DOM 作为模板时，你会受到 HTML 的一些限制。像 ul 、ol、table、select 这样的元素里如果写入自定义组件将被当做无效内容， 例如：</br>
 <pre>
 < table >
@@ -25,6 +25,6 @@ is 特性专为解决此问题，用 is 没 bug ；</br>
 </pre>
 [查看demo](https://github.com/gyjian/vue/blob/master/is.html)</br>
 
-slot 插槽</br>
+3、slot 插槽</br>
 slot: 作用就是占个位置；</br>
 [查看demo](https://github.com/gyjian/vue/blob/master/slot.html)
