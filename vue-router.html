@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>vue-router</title>
+</head>
+<body>
+	<div id="vueRouter">
+		<h1>Hello App !</h1>
+		<p>
+			<router-link to="/home">去首页</router-link>
+			<router-link to="/news">去新的页面</router-link>
+		</p>
+		<router-view></router-view>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/vue-router.js"></script>
+	<script type="text/javascript">
+		const Home={
+    		template:`<span>我是主页</span>`
+    	};
+    	const News={
+    		template:`<span>我是新的页面</span>`
+    	};
+		const routes=[
+			{
+				path:'/home',component:Home
+			},{
+				path:'/news',component:News
+			},{
+    				path:'*',redirect:'/home'
+    		}
+		];
+
+		const router=new VueRouter({
+			routes
+		});
+		new Vue({
+			el:'#vueRouter',
+			router
+		});
+	</script>
+</body>
+</html>

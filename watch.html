@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>侦听器</title>
+</head>
+<body>
+	<div id="watch-example">
+		<p>
+			Ask a yes question：
+			<input v-model="question">
+		</p>
+		<p>{{answer}}</p>
+	</div>
+<script src="js/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+	var watchExampleVM=new Vue({
+		el:"#watch-example",
+		data:{
+			question:'',
+			answer:'我不能给你一个答案,除非你问一个问题!'
+		},
+		watch:{
+			question:function (question) {
+				this.answer='等待你停止打字.....';
+				this.getAnser();
+			}
+		},
+		methods:{
+			getAnser:_.debounce(
+				function(){
+					if (this.question.indexOf('?')===-1) {
+						this.answer='问题通常包含一个问号。;-)';
+						return;
+					}
+					this.answer='思考中...';
+					var vm=this;
+					axios.get('https://yesno.wtf/api')
+					.then(function(response){
+						vm.answer=_.capitalize(response.data.answer);
+					})
+					.catch(function(error){
+						vm.answer="错误!无法到达API。"+error;
+					});
+
+				},500)
+		}
+	});
+</script>
+</body>
+</html>

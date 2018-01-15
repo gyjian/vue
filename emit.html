@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>emit的使用</title>
+</head>
+<body>
+	<div id="emit">
+		<p>{{total}}</p>
+		<button-counter @increment="incrementTotal"></button-counter>
+		<button-counter @increment="incrementTotal"></button-counter>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript">
+		//全局定义组件
+		Vue.component('button-counter',{
+			template:`<button @click="incrementCounter">{{counter}}</button>`,
+			//自定义组件的data必须是函数
+			data:function() {
+				return {counter:0};
+			},
+			methods:{
+				incrementCounter:function(){
+					this.counter++;
+					//$emit的使用
+					this.$emit('increment');
+				}
+			}
+		});
+		new Vue({
+			el:'#emit',
+			data:{
+				total:0
+			},
+			methods:{
+				incrementTotal:function(){
+					this.total++;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

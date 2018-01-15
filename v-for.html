@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>v-for循环</title>
+	<link rel="stylesheet" type="text/css" href="css/cursor.css">
+</head>
+<body>
+	<div id='cursor'>
+		<my-cursor v-for="(item,index) in course" :key='index' :title='item'></my-cursor>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	
+	<!--
+	//组件注册方法2
+	<script type="text/x-template" id="cursorInfo">
+		<a :href="title.url">
+			<div class="course1">
+				<div class="course1Img"></div>
+				<div class="intruduce">
+					<p>{{title.course}}</p>
+					<p>{{title.change}}</p>
+					<span>{{title.r1}}</span>
+					<span>{{title.r2}}</span>
+					<p>{{title.study}}</p>
+				</div>
+			</div>
+		</a>
+	</script>-->
+	<script type="text/javascript">
+
+//组件注册方法1
+
+Vue.component('my-cursor',{
+	props:['title'],
+	template:`<a :href="title.url">
+			<div class="course1">
+				<div class="course1Img"></div>
+				<div class="intruduce">
+					<p>{{title.course}}</p>
+					<p>{{title.change}}</p>
+					<span>{{title.r1}}</span>
+					<span>{{title.r2}}</span>
+					<p>{{title.study}}</p>
+				</div>
+			</div>
+		</a>`
+});
+
+
+		new Vue({
+			el:'#cursor',
+			data:{
+				course:[
+				{
+					course: 'Vue',
+					change: '精选课程，和我们一起零基础入门vue，共发布3个课程，等你来挑战',
+					r1: '前端',
+					r2: '网页制作',
+					study: '已经有891名学生在这里学习',
+					url:'v-for.html'
+				},
+				{
+					course: 'HTML/CSS',
+					change: '精选课程，和我们一起零基础入门HTML/CSS，共发布6个课程，等你来挑战',
+					r1: 'HTML',
+					r2: '网页制作',
+					study: '已经有891名学生在这里学习',
+					url:'v-for.html'
+				},
+				{
+					course: 'bookstrap',
+					change: '精选课程，和我们一起零基础入门bookstrap，共发布4个课程，等你来挑战',
+					r1: 'HTML',
+					r2: '网页布局',
+					study: '已经有891名学生在这里学习',
+					url:'v-for.html'
+				},
+				{
+					course: 'angularjs',
+					change: '精选课程，和我们一起零基础入门angularjs，共发布3个课程，等你来挑战',
+					r1: '前端',
+					r2: '网页制作',
+					study: '已经有891名学生在这里学习',
+					url:'v-for.html'
+				}
+			]
+			},
+			/*//组件注册方法2
+			components:{
+				'my-cursor':{
+					props:['title'],
+					template:'#cursorInfo'
+				}
+			}**/
+		});
+	</script>
+</body>
+</html>

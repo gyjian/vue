@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>class与style绑定</title>
+</head>
+<body>
+	<!--<div v-bind:class="classObject">class与style绑定</div>-->
+	<div :class="active:isActive,'text-danger':hasError">test</div>
+	<!--<div :class="[activeClass,errorClass]"></div>-->
+	<!--<div :style="styleObject"></div>-->
+<script src="js/vue.min.js"></script>
+<script>
+	new Vue({
+		data:{
+			isActive:true,
+			error:null,
+
+			hasError:false,
+			/*
+			activeClass:'active',
+			errorClass:'text-danger',
+
+			classObject:{
+				active:true,
+				"text-danger":false,
+			}
+			
+			styleObject:{
+				color:'red',
+				fontSize:'13px'
+			}**/
+
+		},
+		computed: {
+		  classObject: function () {
+		    return {
+		      active: this.isActive && !this.error,
+		      'text-danger': this.error && this.error.type === 'fatal'
+		    };
+		  }
+		}
+	});
+</script>
+</body>
+</html>

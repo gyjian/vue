@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>路由动画</title>
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+</head>
+<body>
+	<div id="routerTransform">
+		<h1>Hello App !</h1>
+		<router-link to="Home">去首页</router-link>
+		<router-link to="users">去新的页面</router-link>
+		<button @click="push">添加路由</button>
+		<button @click="replace">替换路由</button>
+		<div>
+		<transition enter-active-class='bounceInLeft animated' leave-active-class='bounceOut animated'>
+		<router-view></router-view>
+		</transition>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src='js/vue-router.js'></script>
+	<script type="text/javascript">
+		const Home={
+			template:`<span>我是首页</span>`
+		};
+		const News={
+			template:`<div>
+    		<h3>我是用户</h3>
+				<ul><li><router-link to='/users/sunseekers'>用户信息</router-link></li><ul>
+				<router-view></router-view>
+    		</div>`
+		};
+		const username={
+    		//$route.params: 表示冒号后面的一个对象
+    		template:`<span>sunseekers</span>`
+    	};
+		const routes=[
+			{path:'/home',component:Home},
+			{
+				path:'/users',component:News,
+				children:[
+				{path:':username',component:username}
+			]},
+		];
+		const router=new VueRouter({routes});
+		new Vue({
+			el:'#routerTransform',
+			router,
+			methods:{
+				push(){
+					router.push({path:'/home'});
+				},
+				replace(){
+					router.replace({path:'/users'});
+				}
+			}
+		});
+	</script>
+</body>
+</html>

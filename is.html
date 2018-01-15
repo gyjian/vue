@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>is的特性</title>
+</head>
+<body>
+	<div id="is">
+		<!--在监听键盘事件时，我们经常需要检查常见的键值。Vue 允许为 v-on 在监听键盘事件时添加按键修饰符：@keyup.enter 鼠标按下 enter 键-->
+		<input type="text" placeholder ='Add  a todo-list-example' v-model="newTodo" @keyup.enter="addNewdo">
+		<ul>
+			<!--注意这里的 is="todo-item" 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 <ul> 元素内只有 <li> 元素会被看作有效内容。这样做实现的效果与 <todo-item> 相同，但是可以避开一些潜在的浏览器解析错误。-->
+			<li is="todo-item" v-for="(todo,index) in todos" :key="index" v-bind:title="todo.title" @remove="move(index)"></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#is',
+			data:{
+				newTodo:'',
+				todos:[
+				{title:'吃饭'},
+				{title:'睡觉'},
+				{title: '打游戏'}
+				]
+			},
+			//局部创建组件
+			components:{
+				"todo-item":{
+					/*子组件中 $emit('remove') 去触发父组件的 remove 事件*/
+					props:['title'],
+					template:`<li>{{title}}<button @click="$emit('remove')">X</button></li>`
+				}
+			},
+			methods:{
+				addNewdo(){
+					this.todos.push({title:this.newTodo});
+					this.newTodo='';
+				},
+				move(index){
+					return this.todos.splice(index,1);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
