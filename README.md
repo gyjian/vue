@@ -9,9 +9,9 @@ Vue 为了尽可能高效地渲染元素，通常会重复利用已有元素而�
 
 is</br>
 在 vue 中，当使用 DOM 作为模板时，你会受到 HTML 的一些限制。像 ul 、ol、table、select 这样的元素里如果写入自定义组件将被当做无效内容， 例如：</br>
-                <pre>
-                <table>
-                <my-row>...</my-row>
-                </table>
-                //自定义组件 <my-row> 会被当作无效的内容
-                </pre>
+
+TabTab <table>
+TabTab <my-row>...</my-row>
+</table>
+//自定义组件 <my-row> 会被当作无效的内容
+
