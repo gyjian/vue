@@ -15,3 +15,11 @@ is</br>
 < /table >
 //自定义组件 <my-row> 会被当作无效的内容
 </pre>
+可是在实际项目中我们又会经常使用自定义组件，那该怎么办呐？？？</br>
+is 特性专为解决此问题，用 is 没 bug ；</br>
+<pre>
+< table >
+  < tr is="my-row" ></tr >
+< /table >
+//自定义组件 <my-row> 为有效的内容
+</pre>
